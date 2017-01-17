@@ -1,10 +1,12 @@
 package tm.shker.mohamed.chickengrill.Objects;
 
+import java.io.Serializable;
+
 /**
  * Created by mohamed on 30/09/2016.
  * pojo
  */
-public class Meal {
+public class Meal implements Serializable {
     private String MealName;
     private String MealIngredients;
     private String MealCost;
@@ -77,7 +79,7 @@ public class Meal {
                 ", MealIngredients='" + MealIngredients + '\'' +
                 ", MealCost='" + MealCost + '\'' +
                 ", MealURLImage='" + MealURLImage + '\'' +
-                ", MealSides=" + MealSides.toString() +
+                ", MealSidesActivity=" + MealSides.toString() +
                 '}';
     }
 }

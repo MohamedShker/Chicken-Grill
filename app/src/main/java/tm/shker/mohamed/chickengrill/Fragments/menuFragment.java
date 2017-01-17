@@ -24,6 +24,7 @@ import tm.shker.mohamed.chickengrill.Adapters.mealAdapter;
 import tm.shker.mohamed.chickengrill.Managers.AddToCartListener;
 import tm.shker.mohamed.chickengrill.Managers.Constants;
 import tm.shker.mohamed.chickengrill.Objects.Meal;
+import tm.shker.mohamed.chickengrill.Objects.MealSides;
 import tm.shker.mohamed.chickengrill.R;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -65,6 +66,8 @@ public class menuFragment extends Fragment {
                  meals = new ArrayList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Meal meal = child.getValue(Meal.class);
+                    MealSides mealSides = child.child("Mealsides").getValue(MealSides.class);
+                    meal.setMealSides(mealSides);
                     meals.add(meal);
                 }
 

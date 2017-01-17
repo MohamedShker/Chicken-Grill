@@ -1,12 +1,13 @@
 package tm.shker.mohamed.chickengrill.Objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by mohamed on 25/12/2016.
  */
 
-public class MealSides {
+public class MealSides implements Serializable{
     private ArrayList<String> possibleModifications = new ArrayList<>();
     private ArrayList<String> drinks = new ArrayList<>();
     private ArrayList<String> sides = new ArrayList<>();
@@ -77,7 +78,7 @@ public class MealSides {
 
     @Override
     public String toString() {
-        return "MealSides{" +
+        return "MealSidesActivity{" +
                 "possibleModifications=" + possibleModifications +
                 ", drinks=" + drinks +
                 ", sides=" + sides +

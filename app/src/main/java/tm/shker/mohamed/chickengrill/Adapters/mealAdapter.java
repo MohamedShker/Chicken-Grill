@@ -80,7 +80,7 @@ public class mealAdapter extends RecyclerView.Adapter<mealAdapter.foodOptionView
                 error(R.mipmap.ic_launcher).
                 into(holder.ivMealImage);
 
-        holder.ibAddToCard.setOnClickListener(new AddToCartListener(holder.currMeal));
+        holder.ibAddToCard.setOnClickListener(new AddToCartListener(holder.currMeal,context));
 
         holder.vCard.setOnClickListener(showDetails);
     }
