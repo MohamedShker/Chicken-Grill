@@ -1,10 +1,12 @@
 package tm.shker.mohamed.chickengrill.Objects;
 
+import java.io.Serializable;
+
 /**
  * Created by mohamed on 30/09/2016.
  * pojo
  */
-public class User {
+public class User implements Serializable{
     private String email;
     private String displayName;
 
