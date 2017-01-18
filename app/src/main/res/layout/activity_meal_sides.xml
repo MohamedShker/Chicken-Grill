@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutDirection="ltr"
+        android:background="@color/orangeyBrown"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -27,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cvBigMealDisplay"
+                android:background="@color/black"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 card_view:cardCornerRadius="10dp"
@@ -46,6 +48,7 @@
                         android:layout_height="wrap_content"
                         android:layoutDirection="ltr"
                         android:orientation="horizontal"
+                        android:background="@color/black"
                         android:layout_below="@+id/ivBigMealImage">
 
                         <TextView
@@ -70,7 +73,7 @@
                         android:id="@+id/tvBigMealName"
                         android:layout_weight="6"
                         android:layoutDirection="ltr"
-                        android:textSize="@dimen/my_big_text"
+                        android:textSize="25dp"
                         android:textStyle="italic"
                         android:textColor="@color/orange"
                         android:background="@color/black"
@@ -89,6 +92,7 @@
                         android:id="@+id/ivBigMealImage"
                         android:src="@drawable/chicken_gril_logo"
                         android:scaleType="fitXY"
+                        android:background="@color/black"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
@@ -96,45 +100,49 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rlMealPossibleModifications"
+                android:id="@+id/llMealPossibleModifications"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layoutDirection="rtl">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvMealpossibleModificationsTitle"
                     android:textSize="@dimen/my_medium_text"
+                    android:textColor="@color/orange"
                     android:text="תוספת לבחירה:"
                     android:textStyle="bold"
                     android:layoutDirection="ltr"/>
 
+            </LinearLayout>
 
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rlMealSalads"
+                android:id="@+id/llMealSalads"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layoutDirection="rtl">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvMealSaladsTitle"
                     android:textSize="@dimen/my_medium_text"
+                    android:textColor="@color/orange"
                     android:text="תוספת לבחירה:"
                     android:textStyle="bold"
                     android:layoutDirection="ltr"/>
 
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
             <RelativeLayout
@@ -142,13 +150,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rlMealSide"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:layoutDirection="rtl">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvMealSideTitle"
                     android:textSize="@dimen/my_medium_text"
+                    android:textColor="@color/orange"
                     android:text="תוספת לבחירה:"
                     android:textStyle="bold"
                     android:layoutDirection="ltr"/>
@@ -158,8 +168,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvMealSideTitle"
                     android:id="@+id/rgSides"
-                    android:orientation="horizontal"
-                    android:layoutDirection="ltr">
+                    android:orientation="vertical"
+                    android:layoutDirection="rtl">
                 </RadioGroup>
 
             </RelativeLayout>
@@ -169,13 +179,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rlMealSidesDrink"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:layoutDirection="rtl">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvMealSidesDrinkTitle"
                     android:textSize="@dimen/my_medium_text"
+                    android:textColor="@color/orange"
                     android:text="תוספת לבחירה:"
                     android:textStyle="bold"
                     android:layoutDirection="ltr"/>
@@ -185,34 +197,36 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvMealSidesDrinkTitle"
                     android:id="@+id/rgDrinks"
-                    android:orientation="horizontal"
-                    android:layoutDirection="ltr">
+                    android:orientation="vertical"
+                    android:layoutDirection="rtl">
                 </RadioGroup>
 
             </RelativeLayout>
 
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rlMealSauces"
+                android:id="@+id/llMealSauces"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layoutDirection="rtl"
+                tools:showIn="@layout/activity_meal_sides">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvMealSaucesTitle"
                     android:textSize="@dimen/my_medium_text"
+                    android:textColor="@color/orange"
                     android:text="תוספת לבחירה:"
                     android:textStyle="bold"
-                    android:layoutDirection="ltr"/>
+                    android:layoutDirection="ltr" />
 
 
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+                <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rlMealNotes"
@@ -224,8 +238,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvMealNotesTitle"
                     android:text="הערות לפריט :"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textColor="@color/orange"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:layoutDirection="ltr"
                     />
@@ -237,15 +251,33 @@
                     android:textSize="@dimen/my_medium_text"
                     android:layout_below="@+id/tvMealNotesTitle"
                     android:text=" "
-                    android:maxLength="150"
-                    android:textStyle="bold"
-                    android:textColor="@color/orange"
+                    android:maxLength="100"
+                    android:textColor="@color/white"
                     android:layoutDirection="ltr"/>
 
 
             </RelativeLayout>
 
+              <RelativeLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="10dp">
+
+                  <Button
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:drawableLeft="@drawable/ic_add_shopping_cart"
+                      android:text="@string/add_to_cart"
+                      android:scaleType="fitXY"
+                      android:textSize="15dp"
+                      android:textStyle="bold"
+                      android:background="@color/orange"
+                      android:textDirection="rtl"
+                      />
+
+              </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

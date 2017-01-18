@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public class Meal implements Serializable {
     private String MealName;
+    private String MealType;
     private String MealIngredients;
     private String MealCost;
     private String MealURLImage;
@@ -30,6 +31,23 @@ public class Meal implements Serializable {
         MealCost = mealCost;
         MealURLImage = mealURLImage;
         MealSides = mealSides;
+    }
+
+    public Meal(String mealName, String mealType, String mealIngredients, String mealCost, String mealURLImage, tm.shker.mohamed.chickengrill.Objects.MealSides mealSides) {
+        MealName = mealName;
+        MealType = mealType;
+        MealIngredients = mealIngredients;
+        MealCost = mealCost;
+        MealURLImage = mealURLImage;
+        MealSides = mealSides;
+    }
+
+    public String getMealType() {
+        return MealType;
+    }
+
+    public void setMealType(String mealType) {
+        MealType = mealType;
     }
 
     public tm.shker.mohamed.chickengrill.Objects.MealSides getMealSides() {
@@ -76,10 +94,11 @@ public class Meal implements Serializable {
     public String toString() {
         return "Meal{" +
                 "MealName='" + MealName + '\'' +
+                ", MealType='" + MealType + '\'' +
                 ", MealIngredients='" + MealIngredients + '\'' +
                 ", MealCost='" + MealCost + '\'' +
                 ", MealURLImage='" + MealURLImage + '\'' +
-                ", MealSidesActivity=" + MealSides.toString() +
+                ", MealSides=" + MealSides +
                 '}';
     }
 }

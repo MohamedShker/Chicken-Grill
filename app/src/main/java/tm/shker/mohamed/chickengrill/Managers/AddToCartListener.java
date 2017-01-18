@@ -28,12 +28,21 @@ public class AddToCartListener implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
 
-        Intent intent = new Intent(context,MealSidesActivity.class);
-        Bundle args = new Bundle();
-        args.putSerializable(Constants.MEAL_OPJECT,meal);
-        intent.putExtras(args);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        if(!meal.getMealType().equals("שתיה קלה")) {
+            Intent intent = new Intent(context, MealSidesActivity.class);
+            Bundle args = new Bundle();
+            args.putSerializable(Constants.MEAL_OPJECT, meal);
+            intent.putExtras(args);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
+        else {
+            addToCard();
+        }
+
+    }
+
+    private void addToCard() {
 
     }
 

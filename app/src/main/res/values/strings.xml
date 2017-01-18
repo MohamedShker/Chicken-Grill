@@ -101,4 +101,5 @@
     <!--labels -->
     <string name="title_activity_shopping_cart">סל הקניות</string>
     <string name="title_main_activity">צ\'יקן גריל</string>
+    <string name="add_to_cart">הוסף לסל</string>
 </resources>
