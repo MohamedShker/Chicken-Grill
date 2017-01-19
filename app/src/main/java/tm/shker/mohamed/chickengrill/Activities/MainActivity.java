@@ -1,7 +1,6 @@
 package tm.shker.mohamed.chickengrill.Activities;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -19,13 +18,12 @@ import android.widget.Toast;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import tm.shker.mohamed.chickengrill.Adapters.viewPagerAdapter;
-import tm.shker.mohamed.chickengrill.Fragments.menuFragment;
+import tm.shker.mohamed.chickengrill.Adapters.ViewPagerAdapter;
+import tm.shker.mohamed.chickengrill.Fragments.MenuFragment;
 import tm.shker.mohamed.chickengrill.Objects.User;
 import tm.shker.mohamed.chickengrill.R;
 
@@ -55,17 +53,17 @@ public class MainActivity extends AppCompatActivity  {
         //set adapter to the viewpager
         ArrayList<Fragment> myFrags = new ArrayList<Fragment>();
 
-        myFrags.add(menuFragment.newInstance("עסקיות בורגרים"));
-        myFrags.add(menuFragment.newInstance("עסקיות"));
-        myFrags.add(menuFragment.newInstance("קומבינציות"));
-        myFrags.add(menuFragment.newInstance("מנות בג'בטה"));
-        myFrags.add(menuFragment.newInstance("מנות בבגט"));
-        myFrags.add(menuFragment.newInstance("תוספות"));
-        myFrags.add(menuFragment.newInstance("שתיה קלה"));
+        myFrags.add(MenuFragment.newInstance("עסקיות בורגרים"));
+        myFrags.add(MenuFragment.newInstance("עסקיות"));
+        myFrags.add(MenuFragment.newInstance("קומבינציות"));
+        myFrags.add(MenuFragment.newInstance("מנות בג'בטה"));
+        myFrags.add(MenuFragment.newInstance("מנות בבגט"));
+        myFrags.add(MenuFragment.newInstance("תוספות"));
+        myFrags.add(MenuFragment.newInstance("שתיה קלה"));
 
 
-        viewPagerAdapter pagerAdapter =
-                new viewPagerAdapter(getSupportFragmentManager(), myFrags);
+        ViewPagerAdapter pagerAdapter =
+                new ViewPagerAdapter(getSupportFragmentManager(), myFrags);
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(pagerAdapter);
 

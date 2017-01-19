@@ -14,14 +14,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import tm.shker.mohamed.chickengrill.Adapters.mealAdapter;
-import tm.shker.mohamed.chickengrill.Managers.AddToCartListener;
+import tm.shker.mohamed.chickengrill.Adapters.MealAdapter;
 import tm.shker.mohamed.chickengrill.Managers.Constants;
 import tm.shker.mohamed.chickengrill.Objects.Meal;
 import tm.shker.mohamed.chickengrill.Objects.MealSides;
@@ -32,18 +29,18 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class menuFragment extends Fragment {
+public class MenuFragment extends Fragment {
     private ArrayList<Meal> meals;
-    private mealAdapter adapter;
+    private MealAdapter adapter;
     private String mealType;
     private View v;
 
 
-    public static menuFragment newInstance(String MealType) {
+    public static MenuFragment newInstance(String MealType) {
 
         Bundle args = new Bundle();
         args.putString(Constants.MEAL_TYPE , MealType);
-        menuFragment fragment = new menuFragment();
+        MenuFragment fragment = new MenuFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -73,7 +70,7 @@ public class menuFragment extends Fragment {
 
                 //set adapter to the recyclerView
                 RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
-                adapter = new mealAdapter(meals,getApplicationContext());
+                adapter = new MealAdapter(meals,getApplicationContext());
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setAdapter(adapter);
             }

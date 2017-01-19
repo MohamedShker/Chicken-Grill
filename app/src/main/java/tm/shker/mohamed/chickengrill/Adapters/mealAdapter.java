@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +21,7 @@ import tm.shker.mohamed.chickengrill.R;
  * Created by mohamed on 05/10/2016.
  */
 
-public class mealAdapter extends RecyclerView.Adapter<mealAdapter.foodOptionViewHolder>{
+public class MealAdapter extends RecyclerView.Adapter<MealAdapter.foodOptionViewHolder>{
     private ArrayList<Meal> data;
     private LayoutInflater inflater;
     private Context context;
@@ -43,7 +42,7 @@ public class mealAdapter extends RecyclerView.Adapter<mealAdapter.foodOptionView
     };
 
 
-    public mealAdapter(ArrayList<Meal> data, Context context) {
+    public MealAdapter(ArrayList<Meal> data, Context context) {
         this.data = data;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
@@ -100,7 +99,7 @@ public class mealAdapter extends RecyclerView.Adapter<mealAdapter.foodOptionView
 
         public foodOptionViewHolder(View currView) {
             super(currView);
-            vCard = currView.findViewById(R.id.cardView);
+            vCard = currView.findViewById(R.id.cvMealOption);
             tvMealName = (TextView) currView.findViewById(R.id.tvMealName);
             tvMealDetails = (TextView) currView.findViewById(R.id.tvMealDetails);
             tvMealCost = (TextView) currView.findViewById(R.id.tvMealCost);

@@ -14,4 +14,11 @@
     tools:context="tm.shker.mohamed.chickengrill.Activities.ShoppingCartActivity"
     tools:showIn="@layout/activity_shopping_cart">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvMealOrders">
+
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

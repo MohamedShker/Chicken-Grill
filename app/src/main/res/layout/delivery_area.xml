@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layoutDirection="ltr"
+        android:background="@color/orangeyBrown"
         android:id="@+id/llDeliveryAreaWrapper">
 
         <TextView
@@ -18,7 +19,7 @@
             android:text="60 דקות"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:id="@+id/tvdeliveryTime"/>
 
@@ -29,7 +30,7 @@
             android:text="₪100"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:id="@+id/tvminDelivery"/>
 
@@ -40,7 +41,7 @@
             android:text="₪10"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:id="@+id/tvdeliveryCost"/>
 
@@ -51,7 +52,7 @@
             android:text="חיפה"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:id="@+id/tvareaName"/>
 

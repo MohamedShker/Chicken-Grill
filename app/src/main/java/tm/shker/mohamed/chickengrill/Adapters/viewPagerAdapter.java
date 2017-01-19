@@ -3,22 +3,18 @@ package tm.shker.mohamed.chickengrill.Adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
-
-import tm.shker.mohamed.chickengrill.Fragments.menuFragment;
 
 /**
  * Created by mohamed on 07/10/2016.
  */
 
-public class viewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
     public static int pos = 0;
     private ArrayList<Fragment> myFragments;
 
-    public viewPagerAdapter(FragmentManager fm , ArrayList<Fragment> myFragments) {
+    public ViewPagerAdapter(FragmentManager fm , ArrayList<Fragment> myFragments) {
         super(fm);
         this.myFragments = myFragments;
     }
@@ -70,6 +66,6 @@ public class viewPagerAdapter extends FragmentPagerAdapter {
     }
 
     public static void setPos(int pos) {
-        viewPagerAdapter.pos = pos;
+        ViewPagerAdapter.pos = pos;
     }
 }

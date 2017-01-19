@@ -11,7 +11,7 @@ public class Constants {
     //constant for LoginActivity
     public static final int RC_GOOGLE_SIGN_IN = 1;
 
-    //constants for menuFragment
+    //constants for MenuFragment
     public static final String MEAL_TYPE = "Meal_Type";
     //constant for AddToCartListener
     public static final String MEAL_OPJECT = "Meal_Opject";

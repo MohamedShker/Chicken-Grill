@@ -9,14 +9,16 @@ import java.util.ArrayList;
 
 public class FullOrder implements Serializable {
     private User user;//user that ordered the meal.
+    private DeliveryArea deliveryArea;
     private ArrayList<MealOrder> mealOrders;
     private int sum;
 
     public FullOrder() {
     }
 
-    public FullOrder(User user) {
+    public FullOrder(User user, DeliveryArea deliveryArea) {
         this.user = user;
+        this.deliveryArea = deliveryArea;
         this.mealOrders = new ArrayList<MealOrder>();
         sum = 0;
     }
@@ -31,6 +33,10 @@ public class FullOrder implements Serializable {
 
             sum += CurrMealOrderTotalCost;
         }
+
+        if(deliveryArea != null)
+        sum +=Integer.parseInt(deliveryArea.getDeliveryCost());
+
         return sum;
     }
 
@@ -48,6 +54,14 @@ public class FullOrder implements Serializable {
 
     public int getSum() {
         return sum;
+    }
+
+    public DeliveryArea getDeliveryArea() {
+        return deliveryArea;
+    }
+
+    public void setDeliveryArea(DeliveryArea deliveryArea) {
+        this.deliveryArea = deliveryArea;
     }
 
     @Override
