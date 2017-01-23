@@ -3,6 +3,7 @@ package tm.shker.mohamed.chickengrill.Managers;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import tm.shker.mohamed.chickengrill.Activities.MealSidesActivity;
@@ -27,8 +28,9 @@ public class AddToCartListener implements View.OnClickListener  {
 
     @Override
     public void onClick(View v) {
-
+        Log.i(Constants.TAG, "AddToCartListener -> onClick: " + meal.toString());
         if(!meal.getMealType().equals("שתיה קלה")) {
+
             Intent intent = new Intent(context, MealSidesActivity.class);
             Bundle args = new Bundle();
             args.putSerializable(Constants.MEAL_OPJECT, meal);

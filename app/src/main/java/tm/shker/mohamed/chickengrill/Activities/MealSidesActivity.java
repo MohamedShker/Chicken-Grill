@@ -1,13 +1,12 @@
 package tm.shker.mohamed.chickengrill.Activities;
 
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -24,10 +24,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import tm.shker.mohamed.chickengrill.Managers.Constants;
 import tm.shker.mohamed.chickengrill.Objects.Meal;
+import tm.shker.mohamed.chickengrill.Objects.MealOrder;
 import tm.shker.mohamed.chickengrill.Objects.MealSides;
 import tm.shker.mohamed.chickengrill.R;
 
@@ -40,10 +40,12 @@ public class MealSidesActivity extends AppCompatActivity {
     private LinearLayout llMealPossibleModifications, llMealSalads, llMealSauces, llMealSidesWrapper;
     private RadioGroup rgDrinks, rgSides;
     private EditText etMealNotes;
+    private Button btnAddToCart;
     private Meal mealToDisplay;
     private String mealType;
 
     ArrayList<String> possibleModifications, salads, sides, drinks, sauces;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -75,10 +77,130 @@ public class MealSidesActivity extends AppCompatActivity {
             displayCombinationMeal();
         }
 
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddToCart(v);
+            }
+        });
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void AddToCart(View v) {
+        MealOrder currMealOrder = new MealOrder();
+        Meal orderedMeal = new Meal();
+        orderedMeal.setMealName(mealToDisplay.getMealName());
+        orderedMeal.setMealCost(mealToDisplay.getMealCost());
+        orderedMeal.setMealIngredients(mealToDisplay.getMealIngredients());
+        orderedMeal.setMealType(mealToDisplay.getMealType());
+        orderedMeal.setMealURLImage(mealToDisplay.getMealURLImage());
+
+        String mealType = orderedMeal.getMealType();
+        MealSides orderdMealSides;
+
+        if(mealType.equals("עסקיות בורגרים") || mealType.equals("עסקיות")) {
+            orderdMealSides = getMeal();
+            orderedMeal.setMealSides(orderdMealSides);
+            currMealOrder.setOrderedMeal(orderedMeal);
+            Toast.makeText(this, currMealOrder.toString(), Toast.LENGTH_SHORT).show();
+        }
+        else if(mealType.equals("תוספות")){
+            orderdMealSides = getSide();
+
+        }
+        else if( mealType.equals("מנות בג'בטה") || mealType.equals("מנות בבגט")){
+            orderdMealSides = getBagetMeal();
+        }
+        else if(mealType.equals("קומבינציות")){
+            orderdMealSides = getCombinationMeal();
+        }
+
+    }
+
+
+
+    private MealSides getMeal() {
+        MealSides ans = new MealSides();
+
+        //get chosen side:(from radioBtn)
+        if(!sides.get(1).equals("none")) {
+            String chosenSide = getCheckedRadioButton(rgSides);
+            ans.getSides().add(chosenSide);
+        }
+
+        //get chosen drink:(from radioBtn)
+        if(!drinks.get(1).equals("none")) {
+           String chosenDrink = getCheckedRadioButton(rgDrinks);
+            ans.getDrinks().add(chosenDrink);
+        }
+
+        //get chosen sauces:(from checkBoxes)
+        if(!sauces.get(1).equals("none")) {
+            ans.setSauces(getCheckedBoxes(llMealSauces));
+        }
+
+        //get chosen salads:(from checkBoxes)
+        if(!salads.get(1).equals("none")) {
+            ans.setSalad(getCheckedBoxes(llMealSalads));
+        }
+
+        //get chosen possible modifications:(from checkBoxes)
+        if(!possibleModifications.get(1).equals("none")) {
+           ans.setPossibleModifications(getCheckedBoxes(llMealPossibleModifications));
+        }
+
+
+        //get meal notes:
+        ans.setMealNotes(etMealNotes.getText().toString());
+
+        return ans;
+    }
+
+    private MealSides getSide() {
+        // TODO: 19/01/2017
+        return null;
+    }
+
+    private MealSides getBagetMeal() {
+        // TODO: 19/01/2017
+        return null;
+    }
+
+    private MealSides getCombinationMeal() {
+        // TODO: 19/01/2017
+        return null;
+    }
+
+
+    private ArrayList<String> getCheckedBoxes(LinearLayout parentLayout){
+
+        ArrayList<String> ans = new ArrayList<String>();
+        int childCount = parentLayout.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View nextChild = parentLayout.getChildAt(i);
+            if(nextChild instanceof CheckBox)
+            {
+                CheckBox check = (CheckBox) nextChild;
+                if (check.isChecked()) {
+                    ans.add(check.getText().toString());
+                }
+            }
+        }
+        return ans;
+    }
+
+    private String getCheckedRadioButton(RadioGroup radioGroup){
+        String ans;
+        int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+        View checkedRadioButtonView = radioGroup.findViewById(checkedRadioButtonId);
+        int index = radioGroup.indexOfChild(checkedRadioButtonView);
+        RadioButton checkedRadioBtn = (RadioButton) radioGroup.getChildAt(index);
+        ans = checkedRadioBtn.getText().toString();
+        return ans;
     }
 
 
@@ -117,6 +239,9 @@ public class MealSidesActivity extends AppCompatActivity {
 
         //main linear layout (parent)
         llMealSidesWrapper = (LinearLayout) findViewById(R.id.llMealSidesWrapper);
+
+        //add to cart button
+        btnAddToCart = (Button) findViewById(R.id.btnAddToCart);
     }
 
     private void displayBigMeal(String mealName, String mealCost, String mealURLImage) {
@@ -132,7 +257,6 @@ public class MealSidesActivity extends AppCompatActivity {
             tvBigMealPrice.setText(" ");
         }
     }
-
 
     private void initMealSides(Meal meal){
         MealSides mealSides = meal.getMealSides();
@@ -333,7 +457,6 @@ public class MealSidesActivity extends AppCompatActivity {
         }
     }
 
-
     private void radioButtonDislay(ArrayList<String> arrToDisplay,RadioGroup radioGroup){
         for (int i = 1; i < arrToDisplay.size(); i++) {
             RadioButton radioButton = new RadioButton(this);
@@ -350,8 +473,6 @@ public class MealSidesActivity extends AppCompatActivity {
         }
         radioGroup.check(R.id.first_rb);
     }
-
-
 
     private void checkBoxDisplay(ArrayList<String> arrToDisplay,LinearLayout linearLayout) {
         for (int i = 1; i < arrToDisplay.size(); i++) {
