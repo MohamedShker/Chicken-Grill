@@ -28,7 +28,6 @@ public class AddToCartListener implements View.OnClickListener  {
 
     @Override
     public void onClick(View v) {
-        Log.i(Constants.TAG, "AddToCartListener -> onClick: " + meal.toString());
         if(!meal.getMealType().equals("שתיה קלה")) {
 
             Intent intent = new Intent(context, MealSidesActivity.class);
@@ -45,7 +44,7 @@ public class AddToCartListener implements View.OnClickListener  {
     }
 
     private void addToCard() {
-
+        // TODO: 23/01/2017
     }
 
 }

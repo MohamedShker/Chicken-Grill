@@ -110,10 +110,16 @@ public class MealSidesActivity extends AppCompatActivity {
         }
         else if(mealType.equals("תוספות")){
             orderdMealSides = getSide();
+            orderedMeal.setMealSides(orderdMealSides);
+            currMealOrder.setOrderedMeal(orderedMeal);
+            Toast.makeText(this, orderdMealSides.toString(), Toast.LENGTH_SHORT).show();
 
         }
         else if( mealType.equals("מנות בג'בטה") || mealType.equals("מנות בבגט")){
             orderdMealSides = getBagetMeal();
+            orderedMeal.setMealSides(orderdMealSides);
+            currMealOrder.setOrderedMeal(orderedMeal);
+            Toast.makeText(this, orderdMealSides.toString(), Toast.LENGTH_SHORT).show();
         }
         else if(mealType.equals("קומבינציות")){
             orderdMealSides = getCombinationMeal();
@@ -161,13 +167,72 @@ public class MealSidesActivity extends AppCompatActivity {
     }
 
     private MealSides getSide() {
-        // TODO: 19/01/2017
-        return null;
+        MealSides ans = new MealSides();
+        //get chosen possible modifications:(from radioBtn)
+        if(!possibleModifications.get(1).equals("none")) {
+            int childCount = llMealPossibleModifications.getChildCount();
+            RadioGroup radioGroup = null;
+            for (int i = 0; i < childCount; i++) {
+                View child = llMealPossibleModifications.getChildAt(i);
+                if(child instanceof RadioGroup){
+                     radioGroup = (RadioGroup) child;
+                }
+            }
+            if(radioGroup !=null) {
+                ans.getPossibleModifications().add(getCheckedRadioButton(radioGroup));
+            }
+        }
+
+        //get meal notes:
+        ans.setMealNotes(etMealNotes.getText().toString());
+        return ans;
     }
 
     private MealSides getBagetMeal() {
-        // TODO: 19/01/2017
-        return null;
+        MealSides ans = new MealSides();
+
+        //get chosen side:(from radioBtn)
+        if(!sides.get(1).equals("none")) {
+            String chosenSide = getCheckedRadioButton(rgSides);
+            ans.getSides().add(chosenSide);
+        }
+
+        //get chosen drink:(from radioBtn)
+        if(!drinks.get(1).equals("none")) {
+            String chosenDrink = getCheckedRadioButton(rgDrinks);
+            ans.getDrinks().add(chosenDrink);
+        }
+
+        //get chosen sauces:(from checkBoxes)
+        if(!sauces.get(1).equals("none")) {
+            ans.setSauces(getCheckedBoxes(llMealSauces));
+        }
+
+        //get chosen salads:(from checkBoxes)
+        if(!salads.get(1).equals("none")) {
+            ans.setSalad(getCheckedBoxes(llMealSalads));
+        }
+
+        //get chosen possible modifications:(from radioBtn)
+        if(!possibleModifications.get(1).equals("none")) {
+            int childCount = llMealPossibleModifications.getChildCount();
+            RadioGroup radioGroup = null;
+            for (int i = 0; i < childCount; i++) {
+                View child = llMealPossibleModifications.getChildAt(i);
+                if(child instanceof RadioGroup){
+                    radioGroup = (RadioGroup) child;
+                }
+            }
+            if(radioGroup !=null) {
+                ans.getPossibleModifications().add(getCheckedRadioButton(radioGroup));
+            }
+        }
+
+
+        //get meal notes:
+        ans.setMealNotes(etMealNotes.getText().toString());
+
+        return ans;
     }
 
     private MealSides getCombinationMeal() {
