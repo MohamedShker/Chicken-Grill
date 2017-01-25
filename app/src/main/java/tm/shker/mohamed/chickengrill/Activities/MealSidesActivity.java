@@ -92,6 +92,7 @@ public class MealSidesActivity extends AppCompatActivity {
 
     private void AddToCart(View v) {
         MealOrder currMealOrder = new MealOrder();
+        currMealOrder.setNumOfDuplicationOfTheMeal(1);
         Meal orderedMeal = new Meal();
         orderedMeal.setMealName(mealToDisplay.getMealName());
         orderedMeal.setMealCost(mealToDisplay.getMealCost());
@@ -101,28 +102,42 @@ public class MealSidesActivity extends AppCompatActivity {
 
         String mealType = orderedMeal.getMealType();
         MealSides orderdMealSides;
+        ArrayList<MealSides> combinationMealSides;
+        ArrayList<Meal> combinationMeals = new ArrayList<Meal>();
 
         if(mealType.equals("עסקיות בורגרים") || mealType.equals("עסקיות")) {
             orderdMealSides = getMeal();
             orderedMeal.setMealSides(orderdMealSides);
-            currMealOrder.setOrderedMeal(orderedMeal);
+            currMealOrder.getOrderedMeal().add(orderedMeal);
             Toast.makeText(this, currMealOrder.toString(), Toast.LENGTH_SHORT).show();
         }
         else if(mealType.equals("תוספות")){
             orderdMealSides = getSide();
             orderedMeal.setMealSides(orderdMealSides);
-            currMealOrder.setOrderedMeal(orderedMeal);
+            currMealOrder.getOrderedMeal().add(orderedMeal);
             Toast.makeText(this, orderdMealSides.toString(), Toast.LENGTH_SHORT).show();
 
         }
         else if( mealType.equals("מנות בג'בטה") || mealType.equals("מנות בבגט")){
             orderdMealSides = getBagetMeal();
             orderedMeal.setMealSides(orderdMealSides);
-            currMealOrder.setOrderedMeal(orderedMeal);
+            currMealOrder.getOrderedMeal().add(orderedMeal);
             Toast.makeText(this, orderdMealSides.toString(), Toast.LENGTH_SHORT).show();
         }
         else if(mealType.equals("קומבינציות")){
-            orderdMealSides = getCombinationMeal();
+            combinationMealSides = getCombinationMeal();
+            for (int i = 0; i < combinationMealSides.size() ; i++) {
+                Meal orderedCombinationMeal = new Meal();
+                orderedCombinationMeal.setMealName(mealToDisplay.getMealName());
+                orderedCombinationMeal.setMealCost(mealToDisplay.getMealCost());
+                orderedCombinationMeal.setMealIngredients(mealToDisplay.getMealIngredients());
+                orderedCombinationMeal.setMealType(mealToDisplay.getMealType());
+                orderedCombinationMeal.setMealURLImage(mealToDisplay.getMealURLImage());
+                orderedCombinationMeal.setMealSides(combinationMealSides.get(i));
+                combinationMeals.add(orderedCombinationMeal);
+            }
+            currMealOrder.setOrderedMeal(combinationMeals);
+            Toast.makeText(this, combinationMealSides.toString(), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -215,19 +230,23 @@ public class MealSidesActivity extends AppCompatActivity {
 
         //get chosen possible modifications:(from radioBtn)
         if(!possibleModifications.get(1).equals("none")) {
-            int childCount = llMealPossibleModifications.getChildCount();
-            RadioGroup radioGroup = null;
-            for (int i = 0; i < childCount; i++) {
-                View child = llMealPossibleModifications.getChildAt(i);
-                if(child instanceof RadioGroup){
-                    radioGroup = (RadioGroup) child;
+            if(mealToDisplay.getMealName().contains("חזה עוף") || mealToDisplay.getMealName().contains("שניצל")) {
+                int childCount = llMealPossibleModifications.getChildCount();
+                RadioGroup radioGroup = null;
+                for (int i = 0; i < childCount; i++) {
+                    View child = llMealPossibleModifications.getChildAt(i);
+                    if (child instanceof RadioGroup) {
+                        radioGroup = (RadioGroup) child;
+                    }
+                }
+                if (radioGroup != null) {
+                    ans.getPossibleModifications().add(getCheckedRadioButton(radioGroup));
                 }
             }
-            if(radioGroup !=null) {
-                ans.getPossibleModifications().add(getCheckedRadioButton(radioGroup));
+            else{
+                ans.setPossibleModifications(getCheckedBoxes(llMealPossibleModifications));
             }
         }
-
 
         //get meal notes:
         ans.setMealNotes(etMealNotes.getText().toString());
@@ -235,9 +254,14 @@ public class MealSidesActivity extends AppCompatActivity {
         return ans;
     }
 
-    private MealSides getCombinationMeal() {
-        // TODO: 19/01/2017
-        return null;
+    private ArrayList<MealSides> getCombinationMeal() {
+        ArrayList<MealSides> ans = new ArrayList<MealSides>();
+        int i = getNumOfMealsInCombination();
+
+
+
+
+        return ans;
     }
 
 
@@ -419,9 +443,22 @@ public class MealSidesActivity extends AppCompatActivity {
         if (possibleModifications.get(1).equals("none")) {
             llMealPossibleModifications.setVisibility(View.GONE);
         } else {
-            RadioGroup radioGroup = new RadioGroup(this);
-            llMealPossibleModifications.addView(radioGroup);
-            radioButtonDislay(possibleModifications,radioGroup);
+            if(mealToDisplay.getMealName().contains("חזה עוף")) {
+                RadioGroup radioGroup = new RadioGroup(this);
+                llMealPossibleModifications.addView(radioGroup);
+                radioButtonDislay(possibleModifications, radioGroup);
+            }
+            else if(mealToDisplay.getMealName().contains("שניצל")){
+                tvMealPossibleModificationsTitle.setText("בחר סוג שניצל :");
+                RadioGroup radioGroup = new RadioGroup(this);
+                llMealPossibleModifications.addView(radioGroup);
+                radioButtonDislay(possibleModifications, radioGroup);
+            }
+            else{
+                tvMealPossibleModificationsTitle.setText("שינויים אפשריים במנה :");
+                checkBoxDisplay(possibleModifications,llMealPossibleModifications);
+            }
+
         }
 
         //display salads options:

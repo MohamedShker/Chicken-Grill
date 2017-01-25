@@ -101,4 +101,15 @@ public class Meal implements Serializable {
                 ", MealSides=" + MealSides +
                 '}';
     }
+
+    public Meal clone(Meal mealToClone){
+        Meal copy = new Meal();
+        copy.setMealCost(mealToClone.getMealCost());
+        copy.setMealIngredients(mealToClone.getMealIngredients());
+        copy.setMealName(mealToClone.getMealName());
+        copy.setMealSides(mealToClone.getMealSides());
+        copy.setMealType(mealToClone.getMealType());
+        copy.setMealURLImage(mealToClone.getMealURLImage());
+        return copy;
+    }
 }

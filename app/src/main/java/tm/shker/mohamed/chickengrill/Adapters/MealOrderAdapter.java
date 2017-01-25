@@ -64,9 +64,9 @@ public class MealOrderAdapter extends RecyclerView.Adapter<MealOrderAdapter.Meal
             }
         });
 
-        holder.tvMealOrderName.setText(currMealOrder.getOrderedMeal().getMealName());
-        holder.tvMealOrderIngredients.setText(currMealOrder.getOrderedMeal().getMealIngredients());
-        holder.tvMealOrderCost.setText(currMealOrder.getOrderedMeal().getMealCost());
+        holder.tvMealOrderName.setText(currMealOrder.getOrderedMeal().get(0).getMealName());
+        holder.tvMealOrderIngredients.setText(currMealOrder.getOrderedMeal().get(0).getMealIngredients());
+        holder.tvMealOrderCost.setText(currMealOrder.getOrderedMeal().get(0).getMealCost());
         holder.etNumOfDuplications.setText(holder.numOfDuplication);
     }
 

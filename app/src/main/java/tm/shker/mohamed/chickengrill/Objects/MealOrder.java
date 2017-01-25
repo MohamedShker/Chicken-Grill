@@ -1,33 +1,34 @@
 package tm.shker.mohamed.chickengrill.Objects;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by mohamed on 18/01/2017.
  */
 
 public class MealOrder implements Serializable {
-    private Meal orderedMeal;//this contains all the data about the specific order that the customer ordered.
+    private ArrayList<Meal> orderedMeal;//this contains all the data about the specific order that the customer ordered.
     private int numOfDuplicationOfTheMeal;//how much meals with the exact same ingredients do the customer ordered.
 
     public MealOrder() {
     }
 
-    public MealOrder(Meal orderedMeal) {
+    public MealOrder(ArrayList<Meal> orderedMeal) {
         this.orderedMeal = orderedMeal;
-        numOfDuplicationOfTheMeal = 1;
+        this.numOfDuplicationOfTheMeal = 1;
     }
 
-    public MealOrder(Meal orderedMeal, int numOfDuplicationOfTheMeal) {
+    public MealOrder(ArrayList<Meal> orderedMeal, int numOfDuplicationOfTheMeal) {
         this.orderedMeal = orderedMeal;
         this.numOfDuplicationOfTheMeal = numOfDuplicationOfTheMeal;
     }
 
-    public Meal getOrderedMeal() {
+    public ArrayList<Meal> getOrderedMeal() {
         return orderedMeal;
     }
 
-    public void setOrderedMeal(Meal orderedMeal) {
+    public void setOrderedMeal(ArrayList<Meal> orderedMeal) {
         this.orderedMeal = orderedMeal;
     }
 
